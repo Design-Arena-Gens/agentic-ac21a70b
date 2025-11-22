@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(80, 68, 136, 0.55), #07020f 65%);
+  background-attachment: fixed;
+}
+
+.starfield {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.starfield::before,
+.starfield::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background-image: radial-gradient(1px 1px at 20px 20px, rgba(255, 255, 255, 0.35), transparent),
+    radial-gradient(1px 1px at 200px 120px, rgba(132, 94, 247, 0.35), transparent),
+    radial-gradient(1px 1px at 340px 180px, rgba(124, 95, 255, 0.35), transparent),
+    radial-gradient(1px 1px at 120px 240px, rgba(255, 255, 255, 0.45), transparent);
+  background-size: 240px 240px;
+  animation: drift var(--duration, 36s) linear infinite;
+}
+
+.starfield::after {
+  filter: blur(1px);
+  opacity: 0.5;
+  animation-duration: 48s;
+  transform: rotate(12deg);
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-20%, -20%, 0);
+  }
+}
